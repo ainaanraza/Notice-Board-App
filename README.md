@@ -1,40 +1,104 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Notice Board Application
 
-## Getting Started
+A minimal, elegant, and production-ready Notice Board Application built for academic and professional environments. It allows administrators to publish, categorize, and prioritize important updates with a seamless user experience.
 
-First, run the development server:
+The user interface was crafted using the **"Academic Gallery"** design system principles, heavily utilizing tonal layering, ghost borders, and glassmorphism to create a polished, "no-line" aesthetic.
 
+## 🌟 Features
+
+- **Notice Management:** Full CRUD (Create, Read, Update, Delete) functionality for notices.
+- **Categorization:** Organize notices by type (General, Event, Exam).
+- **Prioritization:** Mark notices as "Urgent" to pin them to the top of the dashboard.
+- **Modern UI/UX:** Built with a custom Tailwind CSS tonal palette (Orange theme), featuring ambient shadows, skeleton loaders, and frosted glass navigation.
+- **Robust Error Handling:** Integrated Toast notifications for network failures, validation errors, and success states.
+- **Responsive Design:** Fully optimized for mobile, tablet, and desktop viewing.
+
+## 🛠 Tech Stack
+
+- **Framework:** Next.js (Pages Router)
+- **Frontend:** React 19, Tailwind CSS v4
+- **Database ORM:** Prisma
+- **Database:** SQLite (Local Development) / MySQL via TiDB Cloud (Production)
+- **Deployment:** Vercel
+
+## 🚀 Setup Instructions
+
+### 1. Clone the Repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/ainaanraza/Notice-Board-App.git
+cd Notice-Board-App
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### 3. Environment Variables
+Create a `.env` file in the root directory. You can use `.env.example` as a template.
+For local development using SQLite:
+```env
+DATABASE_URL="file:./dev.db"
+```
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+### 4. Database Setup
+Initialize the database and generate the Prisma Client:
+```bash
+# Push the schema to create the local SQLite database tables
+npx prisma db push
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+# Generate the Prisma Client
+npx prisma generate
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 5. Run the Development Server
+```bash
+npm run dev
+```
+Open [http://localhost:3000](http://localhost:3000) to view the application.
 
-## Learn More
+## 🔌 API Endpoints
 
-To learn more about Next.js, take a look at the following resources:
+The application exposes the following RESTful endpoints under `/api/notices`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/notices` | Fetches all notices, ordered by Priority (Urgent first) and Date. |
+| `POST` | `/api/notices` | Creates a new notice. Requires title, body, category, priority, and date. |
+| `PUT` | `/api/notices/:id` | Updates an existing notice by its ID. |
+| `DELETE`| `/api/notices/:id` | Deletes a notice by its ID. |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🌐 Deployment Instructions
 
-## Deploy on Vercel
+This project is configured for seamless deployment on **Vercel** with a **TiDB Cloud** Serverless database.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. **Set up TiDB Cloud:**
+   - Create a free serverless cluster on [TiDB Cloud](https://tidbcloud.com/).
+   - Copy the connection string. Ensure the database name is set to `test` (not `sys`).
+2. **Update Prisma Schema:**
+   - In `prisma/schema.prisma`, ensure the provider is set to `"mysql"`.
+3. **Deploy to Vercel:**
+   - Import the project into Vercel.
+   - Add your TiDB connection string to the `DATABASE_URL` environment variable in Vercel settings.
+   - Deploy. Vercel will automatically run `prisma generate` during the build step.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+*(Note: If you run into a 500 error on Vercel, ensure you have run `npx prisma db push` locally using your TiDB connection string to create the production tables!)*
+
+## 🔮 Future Improvements
+
+- **Image Uploads:** Integrate Cloudinary for secure, optional image attachments on notices.
+- **Authentication:** Implement NextAuth.js to restrict notice creation and deletion to authorized administrators.
+- **Pagination & Search:** Add infinite scrolling and text-based search for dashboards with high notice volume.
+
+---
+
+## 🤖 AI Usage Disclosure
+
+This project was developed with the assistance of advanced AI coding tools to accelerate development and ensure best practices. 
+
+- **Architecture & Planning:** AI was used to discuss and formulate the optimal folder structure, routing strategy (Next.js Pages router vs App router), and database schema design with Prisma.
+- **Code Generation:** Boilerplate code for API routes, form validation logic, and repetitive CRUD operations were initially generated via AI prompts and subsequently customized.
+- **UI/UX Refinement:** The custom "Stitch" design system (including tonal layering, ghost borders, and the Tailwind CSS v4 integration) was implemented through collaborative AI code reviews and iterative generation.
+- **Debugging:** AI assistance was heavily utilized to diagnose and resolve complex deployment issues, including Vercel build caching, Prisma Client environment errors (`EPERM`), and TiDB system database restrictions.
+
+*All AI-generated code was thoroughly reviewed, tested, and manually refined to meet production standards.*
