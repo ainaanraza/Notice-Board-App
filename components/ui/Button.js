@@ -1,10 +1,10 @@
 export function Button({ children, type = 'button', variant = 'primary', isLoading = false, className = '', disabled, ...props }) {
-  const baseStyles = "inline-flex justify-center rounded-md px-3 py-2 text-sm font-semibold shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed";
+  const baseStyles = "inline-flex justify-center rounded-xl px-4 py-2.5 text-[0.875rem] font-semibold shadow-none focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed";
   
   const variants = {
-    primary: "bg-blue-600 text-white hover:bg-blue-500 focus-visible:outline-blue-600 dark:bg-blue-500 dark:hover:bg-blue-400",
-    secondary: "bg-white text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 dark:bg-gray-800 dark:text-gray-100 dark:ring-gray-700 dark:hover:bg-gray-700",
-    danger: "bg-red-600 text-white hover:bg-red-500 focus-visible:outline-red-600 dark:bg-red-500 dark:hover:bg-red-400"
+    primary: "bg-primary text-on-primary hover:bg-primary-container hover:text-on-primary-fixed",
+    secondary: "bg-secondary-container text-on-secondary-container hover:bg-secondary transition-colors",
+    danger: "bg-error text-on-error hover:bg-tertiary-container hover:text-tertiary transition-colors"
   };
 
   return (

@@ -69,17 +69,17 @@ export default function NoticeForm({ initialData, onSubmit, isLoading = false })
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 bg-white dark:bg-gray-900 p-6 sm:p-8 rounded-xl shadow-sm ring-1 ring-gray-900/5 dark:ring-white/10 max-w-2xl w-full mx-auto">
+    <form onSubmit={handleSubmit} className="space-y-8 bg-surface-lowest p-8 sm:p-10 rounded-2xl max-w-2xl w-full mx-auto">
       <div>
-        <h2 className="text-xl font-semibold leading-7 text-gray-900 dark:text-white">
+        <h2 className="text-[1.5rem] font-medium tracking-tight text-on-surface-variant">
           {isEditMode ? 'Edit Notice' : 'Create New Notice'}
         </h2>
-        <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
+        <p className="mt-2 text-[0.875rem] leading-[1.5] text-on-surface-variant">
           Fill out the fields below to {isEditMode ? 'update the' : 'publish a new'} notice.
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-x-6 gap-y-6 sm:grid-cols-6 border-t border-gray-900/10 dark:border-white/10 pt-6">
+      <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 pt-2">
         <div className="sm:col-span-6 space-y-2">
           <Label htmlFor="title" required>Title</Label>
           <Input
@@ -142,7 +142,7 @@ export default function NoticeForm({ initialData, onSubmit, isLoading = false })
         </div>
       </div>
 
-      <div className="mt-6 flex items-center justify-end gap-x-4 border-t border-gray-900/10 dark:border-white/10 pt-6">
+      <div className="mt-8 flex items-center justify-end gap-x-4 pt-6">
         <Button variant="secondary" type="button" onClick={() => window.history.back()} disabled={isLoading}>
           Cancel
         </Button>

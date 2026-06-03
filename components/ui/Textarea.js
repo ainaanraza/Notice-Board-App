@@ -2,10 +2,10 @@ export function Textarea({ error, className = '', ...props }) {
   return (
     <div className="w-full">
       <textarea
-        className={`block w-full rounded-md border-0 py-1.5 px-3 text-gray-900 shadow-sm ring-1 ring-inset focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 dark:bg-gray-800 dark:text-white min-h-[100px] ${
+        className={`block w-full rounded-xl border-0 py-3 px-4 text-on-surface shadow-none bg-surface-highest transition-colors focus:bg-surface-lowest focus:ring-2 focus:ring-inset sm:text-sm sm:leading-6 min-h-[120px] ${
           error
-            ? 'ring-red-300 focus:ring-red-500 dark:ring-red-500/50'
-            : 'ring-gray-300 placeholder:text-gray-400 focus:ring-blue-600 dark:ring-gray-700 dark:placeholder:text-gray-500'
+            ? 'ring-2 ring-inset ring-error focus:ring-error'
+            : 'ring-0 focus:ring-primary'
         } ${className}`}
         {...props}
       />

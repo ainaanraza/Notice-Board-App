@@ -2,10 +2,10 @@ export function Label({ htmlFor, children, className = '', required }) {
   return (
     <label
       htmlFor={htmlFor}
-      className={`block text-sm font-medium leading-6 text-gray-900 dark:text-gray-100 ${className}`}
+      className={`block text-[0.875rem] font-medium leading-6 text-on-surface-variant mb-2 ${className}`}
     >
       {children}
-      {required && <span className="text-red-500 ml-1">*</span>}
+      {required && <span className="text-tertiary ml-1">*</span>}
     </label>
   );
 }
